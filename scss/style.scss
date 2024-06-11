@@ -1,7 +1,9 @@
 $color-brand-green: #1aa090;
 $color-font-small: #d6d6d6;
 $color-bg: #121b25;
-
+$color-filter-type: #858585;
+$color-filter-value: #121b25;
+$color-active-button: #15786c;
 * {
   margin: 0;
   padding: 0;
@@ -18,6 +20,7 @@ ul {
 body {
   font-family: "Work Sans", sans-serif;
   background-color: $color-bg;
+  color: #fff;
   &._lock {
     overflow: hidden;
   }
@@ -27,6 +30,17 @@ body {
   max-width: 1450px;
   margin: 0 auto;
   padding: 0 15px;
+}
+
+//-------General--------->
+
+.text {
+  font-family: Work Sans;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30.6px;
+  text-align: left;
+  color: $color-font-small;
 }
 
 /*--Header--*/
@@ -201,6 +215,189 @@ body {
   @media (any-hover: hover) {
     &:hover {
       background-color: transparent;
+    }
+  }
+}
+
+//--------hero--------->
+.page {
+}
+.hero {
+  margin-top: clamp(1.875rem, 1.057rem + 4.09vw, 4.688rem);
+  // .hero__container
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: 922px) {
+      flex-direction: column;
+    }
+  }
+  // .hero__content
+  &__content {
+    flex: 0 0 calc(700px / 1420px * 100%);
+    padding-bottom: 160px;
+    @media (max-width: 992px) {
+      padding-bottom: 20px;
+    }
+  }
+  // .hero__title
+  &__title {
+    font-family: Work Sans;
+    font-size: clamp(1.875rem, 1.184rem + 3.45vw, 4.25rem);
+    font-weight: 600;
+    line-height: 1.26;
+    text-align: left;
+    text-transform: capitalize;
+  }
+  // .hero__text
+  &__text {
+    margin-top: 18px;
+  }
+  // .hero__filter
+  &__filter {
+    height: 100px;
+    width: 880px;
+    background-color: #fff;
+    margin-top: clamp(1.875rem, 1.33rem + 2.73vw, 3.75rem);
+    position: absolute;
+    @media (max-width: 922px) {
+      width: 100%;
+      position: static;
+    }
+  }
+  // .hero__img
+  &__img {
+    flex: 0 0 calc(700px / 1420px * 100%);
+
+    @media (min-width: 768px) and (max-width: 922px) {
+      display: none;
+    }
+  }
+}
+
+//---------`Filter --------->
+.filter {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 165px;
+  color: #000;
+  @media (max-width: 576px) {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 10px;
+    height: auto;
+  }
+  @media (max-width: 475px) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  // .filter__block
+  &__block {
+    &:nth-child(2) {
+      border-right: 1px solid #e8e8e8;
+      border-left: 1px solid #e8e8e8;
+    }
+  }
+  // .filter__btn
+  &__btn {
+    padding: 5px;
+    button {
+      cursor: pointer;
+      background-color: $color-brand-green;
+      height: 100%;
+      width: 100%;
+      border: none;
+      font-weight: 500;
+      font-size: 24px;
+      text-transform: capitalize;
+      color: #ffffff;
+      padding: 10px;
+      &:active {
+        background-color: #15786c;
+      }
+    }
+    @media (max-width: 576px) and (min-width: 475px) {
+      grid-column: 1/4;
+    }
+  }
+}
+.block-filter {
+  position: relative;
+  // .block-filter__button
+  &__button {
+    display: flex;
+    padding-left: 40px;
+    justify-content: center;
+    height: 100%;
+    flex-direction: column;
+  }
+  // .block-filter__header
+  &__header {
+    display: flex;
+    align-items: center;
+  }
+  // .block-filter__type
+  &__type {
+    padding-right: 2px;
+    font-family: Work Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.77px;
+    text-align: left;
+    color: $color-filter-type;
+  }
+  // .block-filter__icon
+  &__icon {
+    width: 10px;
+    height: 7px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    background: url("../img/icons/arrow-dropdown.svg") center bottom no-repeat;
+
+    &._active {
+      transform: rotate(180deg);
+    }
+  }
+  // .block-filter__value
+  &__value {
+    font-family: Work Sans;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22.68px;
+    text-align: left;
+    color: $color-filter-value;
+    cursor: pointer;
+  }
+  // .block-filter__dropdown
+  &__dropdown {
+    z-index: 2;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    box-shadow: 0 0 5px 1px #000;
+    &._active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+      transform: translateY(5px);
+    }
+  }
+  // .block-filter__item
+  &__item {
+    padding: 10px;
+    transition: background-color 0.3s;
+    text-transform: capitalize;
+    cursor: pointer;
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: #adadad;
+      }
     }
   }
 }
